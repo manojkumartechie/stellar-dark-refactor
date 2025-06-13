@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-slate-800/50">
+    <section id="contact" className="py-20 bg-slate-900">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="bg-slate-800/80 backdrop-blur-sm rounded-xl p-8 text-center border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
           >
-            <Mail className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+            <Mail className="w-12 h-12 text-blue-400 mx-auto mb-4" style={{ filter: 'none' }} />
             <h3 className="text-xl font-semibold text-white mb-2">Email</h3>
             <p className="text-gray-300 mb-4">manojkumar9384@outlook.com</p>
             <a
@@ -47,7 +47,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="bg-slate-800/80 backdrop-blur-sm rounded-xl p-8 text-center border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
           >
-            <Phone className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+            <Phone className="w-12 h-12 text-blue-400 mx-auto mb-4" style={{ filter: 'none' }} />
             <h3 className="text-xl font-semibold text-white mb-2">Phone</h3>
             <p className="text-gray-300 mb-4">+91 7826807488</p>
             <a
@@ -65,7 +65,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-slate-800/80 backdrop-blur-sm rounded-xl p-8 text-center border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
           >
-            <MapPin className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+            <MapPin className="w-12 h-12 text-blue-400 mx-auto mb-4" style={{ filter: 'none' }} />
             <h3 className="text-xl font-semibold text-white mb-2">Location</h3>
             <p className="text-gray-300 mb-4">Dindigul, Tamil Nadu, India</p>
             <div className="flex justify-center gap-4">
@@ -75,7 +75,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="p-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors duration-200"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" style={{ filter: 'none' }} />
               </a>
               <a
                 href="https://github.com/manojkumartechie"
@@ -83,7 +83,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="p-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors duration-200"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-5 h-5" style={{ filter: 'none' }} />
               </a>
             </div>
           </motion.div>

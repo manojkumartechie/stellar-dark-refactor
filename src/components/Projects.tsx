@@ -49,7 +49,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 bg-slate-800/50">
+    <section id="projects" className="py-20 bg-slate-900">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -102,14 +102,14 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors duration-200"
                 >
-                  <Github size={16} />
+                  <Github size={16} style={{ filter: 'none' }} />
                   <span className="text-sm">Code</span>
                 </a>
                 <a
                   href={project.demo}
                   className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors duration-200"
                 >
-                  <ExternalLink size={16} />
+                  <ExternalLink size={16} style={{ filter: 'none' }} />
                   <span className="text-sm">Demo</span>
                 </a>
               </div>

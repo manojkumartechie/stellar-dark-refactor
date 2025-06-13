@@ -4,7 +4,7 @@ import { TrendingUp, Brain, PieChart } from "lucide-react";
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-slate-800/50">
+    <section id="about" className="py-20 bg-slate-900">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,29 +63,47 @@ const About = () => {
             <h3 className="text-2xl font-bold text-white mb-8">Core Strengths</h3>
             
             <div className="space-y-6">
-              <div className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
-                <TrendingUp className="w-8 h-8 text-blue-400 mt-1 flex-shrink-0" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
+              >
+                <TrendingUp className="w-8 h-8 text-blue-400 mt-1 flex-shrink-0" style={{ filter: 'none' }} />
                 <div>
                   <h4 className="text-xl font-semibold text-white mb-2">Data Analytics</h4>
-                  <p className="text-gray-300">Advanced statistical analysis and predictive modeling</p>
+                  <p className="text-gray-300">Advanced statistical analysis and predictive modeling with expertise in Python, R, and SQL for extracting actionable insights from complex datasets.</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
-                <Brain className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
+              >
+                <Brain className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" style={{ filter: 'none' }} />
                 <div>
                   <h4 className="text-xl font-semibold text-white mb-2">Machine Learning</h4>
-                  <p className="text-gray-300">Deep learning, time series forecasting, and risk assessment</p>
+                  <p className="text-gray-300">Deep learning, neural networks, time series forecasting, and risk assessment using TensorFlow, PyTorch, and scikit-learn.</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
-                <PieChart className="w-8 h-8 text-green-400 mt-1 flex-shrink-0" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
+              >
+                <PieChart className="w-8 h-8 text-green-400 mt-1 flex-shrink-0" style={{ filter: 'none' }} />
                 <div>
                   <h4 className="text-xl font-semibold text-white mb-2">Financial Analytics</h4>
-                  <p className="text-gray-300">Portfolio optimization, fraud detection, and risk management</p>
+                  <p className="text-gray-300">Portfolio optimization, algorithmic trading, fraud detection, and comprehensive risk management solutions for financial institutions.</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
