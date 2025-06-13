@@ -1,3 +1,4 @@
+
 // Data
 const skills = {
     "Programming & DBs": {
@@ -175,7 +176,7 @@ function renderSkills() {
     });
 }
 
-// Projects rendering and filtering
+// Projects rendering
 function renderProjects() {
     const projectsGrid = document.getElementById('projects-grid');
     if (!projectsGrid) return;
@@ -183,7 +184,6 @@ function renderProjects() {
     projects.forEach((project, index) => {
         const projectCard = document.createElement('div');
         projectCard.className = `project-card fade-in-up`;
-        projectCard.setAttribute('data-category', project.category);
         projectCard.style.animationDelay = `${index * 0.1}s`;
         
         projectCard.innerHTML = `
@@ -208,32 +208,6 @@ function renderProjects() {
         `;
         
         projectsGrid.appendChild(projectCard);
-    });
-}
-
-// Project filtering
-function initProjectFiltering() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterBtns.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
-            btn.classList.add('active');
-            
-            const filter = btn.getAttribute('data-filter');
-            
-            projectCards.forEach((card, index) => {
-                if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                    card.classList.remove('hidden');
-                    card.style.animationDelay = `${index * 0.1}s`;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        });
     });
 }
 
@@ -266,8 +240,7 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
                 
                 // Add staggered animation for child elements
                 const children = entry.target.querySelectorAll('.skill-tag, .tech-tag, .strength-item, .contact-item');
@@ -283,13 +256,10 @@ function initScrollAnimations() {
     
     // Observe elements with fade-in-up class
     document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
     
-    // Observe child elements for staggered animations
+    // Set initial styles for child elements
     document.querySelectorAll('.skill-tag, .tech-tag, .strength-item, .contact-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -326,38 +296,17 @@ function initLoadingAnimation() {
     });
 }
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Start typing animation after a delay
-    setTimeout(typeText, 1000);
-    
-    // Initialize all functionality
-    initNavigation();
-    renderSkills();
-    renderProjects();
-    initProjectFiltering();
-    initSmoothScrolling();
-    initParallaxEffects();
-    initLoadingAnimation();
-    
-    // Initialize scroll animations after a short delay to ensure all elements are rendered
-    setTimeout(initScrollAnimations, 100);
-    
-    // Add some interactive effects
-    addInteractiveEffects();
-});
-
 // Add interactive effects
 function addInteractiveEffects() {
     // Add hover effect to social links
     const socialLinks = document.querySelectorAll('.social-link');
     socialLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
-            link.style.transform = 'translateY(-5px) scale(1.1) rotate(5deg)';
+            link.style.transform = 'translateY(-5px) scale(1.1)';
         });
         
         link.addEventListener('mouseleave', () => {
-            link.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+            link.style.transform = 'translateY(0) scale(1)';
         });
     });
     
@@ -391,14 +340,34 @@ function addInteractiveEffects() {
         card.style.animationDelay = `${index * 0.2}s`;
         
         card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px) scale(1.02) rotateY(5deg)';
+            card.style.transform = 'translateY(-10px) scale(1.02)';
         });
         
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1) rotateY(0deg)';
+            card.style.transform = 'translateY(0) scale(1)';
         });
     });
 }
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Start typing animation after a delay
+    setTimeout(typeText, 1000);
+    
+    // Initialize all functionality
+    initNavigation();
+    renderSkills();
+    renderProjects();
+    initSmoothScrolling();
+    initParallaxEffects();
+    initLoadingAnimation();
+    
+    // Initialize scroll animations after a short delay to ensure all elements are rendered
+    setTimeout(initScrollAnimations, 100);
+    
+    // Add some interactive effects
+    addInteractiveEffects();
+});
 
 // Handle window resize
 window.addEventListener('resize', () => {
@@ -408,40 +377,3 @@ window.addEventListener('resize', () => {
         navbar.style.background = 'rgba(15, 23, 42, 0.95)';
     }
 });
-
-// Add CSS for ripple effect
-const style = document.createElement('style');
-style.textContent = `
-    .btn {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-        pointer-events: none;
-    }
-    
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-    
-    .hero-animation {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    body.loaded .hero-animation {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
-document.head.appendChild(style);
