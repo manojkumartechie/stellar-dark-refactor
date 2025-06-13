@@ -162,8 +162,7 @@ function renderSkills() {
     
     Object.entries(skills).forEach(([category, data], index) => {
         const skillCard = document.createElement('div');
-        skillCard.className = 'skill-category fade-in-up';
-        skillCard.style.animationDelay = `${index * 0.1}s`;
+        skillCard.className = 'skill-category';
         
         skillCard.innerHTML = `
             <h3><i class="${data.icon}"></i> ${category}</h3>
@@ -183,8 +182,7 @@ function renderProjects() {
     
     projects.forEach((project, index) => {
         const projectCard = document.createElement('div');
-        projectCard.className = `project-card fade-in-up`;
-        projectCard.style.animationDelay = `${index * 0.1}s`;
+        projectCard.className = 'project-card';
         
         projectCard.innerHTML = `
             <div class="project-header">
@@ -230,8 +228,9 @@ function initSmoothScrolling() {
     });
 }
 
-// Intersection Observer for animations
+// Simplified scroll animations - removed problematic intersection observer
 function initScrollAnimations() {
+    // Simple fade-in for elements when they come into view
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -240,30 +239,18 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Add staggered animation for child elements
-                const children = entry.target.querySelectorAll('.skill-tag, .tech-tag, .strength-item, .contact-item');
-                children.forEach((child, index) => {
-                    setTimeout(() => {
-                        child.style.opacity = '1';
-                        child.style.transform = 'translateY(0)';
-                    }, index * 50);
-                });
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
     }, observerOptions);
     
-    // Observe elements with fade-in-up class
-    document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right').forEach(el => {
-        observer.observe(el);
-    });
-    
-    // Set initial styles for child elements
-    document.querySelectorAll('.skill-tag, .tech-tag, .strength-item, .contact-item').forEach(el => {
+    // Only observe project cards and skill categories, not about section content
+    document.querySelectorAll('.project-card, .skill-category').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
     });
 }
 
@@ -337,8 +324,6 @@ function addInteractiveEffects() {
     // Add floating animation to project cards
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.2}s`;
-        
         card.addEventListener('mouseenter', () => {
             card.style.transform = 'translateY(-10px) scale(1.02)';
         });
