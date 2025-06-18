@@ -6,7 +6,7 @@ const skills = {
         skills: ["Python", "R", "Java", "SQL (PL/SQL)", "MongoDB", "XML"]
     },
     "Data Analysis & ML": {
-        icon: "fas fa-brain",
+        icon: "fas fa-brain", 
         skills: ["Pandas", "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "CUDA"]
     },
     "Visualization & BI": {
@@ -65,7 +65,7 @@ const projects = [
         category: "analytics",
         description: "Comprehensive dashboard providing 360-degree view of financial life, aggregating data from all accounts with real-time analysis and predictive insights.",
         technologies: ["Plaid API", "D3.js", "React", "Real-time Analytics"],
-        github: "https://github.com/manojkumartechie/prism-dashboard",
+        github: "https://github.com/manojkumartechie/prism-dashboard", 
         demo: "#"
     },
     {
@@ -145,24 +145,25 @@ function initNavigation() {
         const navbar = document.getElementById('navbar');
         if (navbar) {
             if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
                 navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
             } else {
-                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.05)';
                 navbar.style.boxShadow = 'none';
             }
         }
     });
 }
 
-// Skills rendering
+// Skills rendering with animation
 function renderSkills() {
     const skillsGrid = document.getElementById('skills-grid');
     if (!skillsGrid) return;
     
     Object.entries(skills).forEach(([category, data], index) => {
         const skillCard = document.createElement('div');
-        skillCard.className = 'skill-category';
+        skillCard.className = 'skill-category glass-morphism card-3d reveal-on-scroll';
+        skillCard.style.animationDelay = `${index * 0.1}s`;
         
         skillCard.innerHTML = `
             <h3><i class="${data.icon}"></i> ${category}</h3>
@@ -175,14 +176,15 @@ function renderSkills() {
     });
 }
 
-// Projects rendering
+// Projects rendering with animation
 function renderProjects() {
     const projectsGrid = document.getElementById('projects-grid');
     if (!projectsGrid) return;
     
     projects.forEach((project, index) => {
         const projectCard = document.createElement('div');
-        projectCard.className = 'project-card';
+        projectCard.className = 'project-card glass-morphism card-3d reveal-on-scroll';
+        projectCard.style.animationDelay = `${index * 0.1}s`;
         
         projectCard.innerHTML = `
             <div class="project-header">
@@ -195,10 +197,10 @@ function renderProjects() {
                     ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                 </div>
                 <div class="project-links">
-                    <a href="${project.github}" target="_blank" class="project-link">
+                    <a href="${project.github}" target="_blank" class="project-link glass-morphism">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <a href="${project.demo}" class="project-link">
+                    <a href="${project.demo}" class="project-link glass-morphism">
                         <i class="fas fa-external-link-alt"></i> Demo
                     </a>
                 </div>
@@ -216,7 +218,7 @@ function initSmoothScrolling() {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const headerHeight = 70;
+                const headerHeight = 80;
                 const targetPosition = target.offsetTop - headerHeight;
                 
                 window.scrollTo({
@@ -228,78 +230,55 @@ function initSmoothScrolling() {
     });
 }
 
-// Simplified scroll animations - removed problematic intersection observer
-function initScrollAnimations() {
-    // Simple fade-in for elements when they come into view
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+// Reveal on scroll animation
+function initRevealOnScroll() {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
     
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
     
-    // Only observe project cards and skill categories, not about section content
-    document.querySelectorAll('.project-card, .skill-category').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
     });
 }
 
-// Parallax effect for floating shapes
+// Parallax effect for floating orbs
 function initParallaxEffects() {
-    const shapes = document.querySelectorAll('.shape');
+    const orbs = document.querySelectorAll('.floating-orb');
     
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
+        const rate = scrolled * -0.3;
         
-        shapes.forEach((shape, index) => {
+        orbs.forEach((orb, index) => {
             const speed = (index + 1) * 0.1;
-            shape.style.transform = `translateY(${rate * speed}px) rotate(${scrolled * 0.1}deg)`;
+            orb.style.transform = `translate3d(0, ${rate * speed}px, 0)`;
         });
     });
 }
 
-// Add loading animation
-function initLoadingAnimation() {
-    window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
-        
-        // Trigger hero animation
-        const heroContent = document.querySelector('.hero-animation');
-        if (heroContent) {
-            heroContent.style.opacity = '1';
-            heroContent.style.transform = 'translateY(0)';
-        }
-    });
-}
-
-// Add interactive effects
+// Add interactive hover effects
 function addInteractiveEffects() {
-    // Add hover effect to social links
-    const socialLinks = document.querySelectorAll('.social-link');
-    socialLinks.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            link.style.transform = 'translateY(-5px) scale(1.1)';
-        });
-        
-        link.addEventListener('mouseleave', () => {
-            link.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-    
-    // Add click effect to buttons
+    // Enhanced button hover effects
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transform = 'translateY(-3px) scale(1.05)';
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translateY(0) scale(1)';
+        });
+        
         btn.addEventListener('click', (e) => {
             // Create ripple effect
             const ripple = document.createElement('span');
@@ -308,10 +287,18 @@ function addInteractiveEffects() {
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
             
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.classList.add('ripple');
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
             
             btn.appendChild(ripple);
             
@@ -321,21 +308,75 @@ function addInteractiveEffects() {
         });
     });
     
-    // Add floating animation to project cards
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px) scale(1.02)';
+    // Enhanced card tilt effects
+    const cards = document.querySelectorAll('.card-3d');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 768) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+            }
         });
         
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1)';
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
         });
     });
 }
 
+// Add CSS keyframes for ripple effect
+function addRippleKeyframes() {
+    if (!document.querySelector('#ripple-keyframes')) {
+        const style = document.createElement('style');
+        style.id = 'ripple-keyframes';
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Performance optimization
+function optimizePerformance() {
+    // Debounce scroll events
+    let scrollTimeout;
+    const originalScrollHandler = window.addEventListener;
+    
+    // Add will-change property to animated elements
+    const animatedElements = document.querySelectorAll('.card-3d, .floating-orb, .btn');
+    animatedElements.forEach(element => {
+        element.style.willChange = 'transform';
+    });
+    
+    // Optimize scroll performance
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            // Remove will-change after animation
+            animatedElements.forEach(element => {
+                element.style.willChange = 'auto';
+            });
+        }, 150);
+    }, { passive: true });
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Add ripple keyframes
+    addRippleKeyframes();
+    
     // Start typing animation after a delay
     setTimeout(typeText, 1000);
     
@@ -345,20 +386,34 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProjects();
     initSmoothScrolling();
     initParallaxEffects();
-    initLoadingAnimation();
     
-    // Initialize scroll animations after a short delay to ensure all elements are rendered
-    setTimeout(initScrollAnimations, 100);
-    
-    // Add some interactive effects
-    addInteractiveEffects();
+    // Initialize reveal animations after content is loaded
+    setTimeout(() => {
+        initRevealOnScroll();
+        addInteractiveEffects();
+        optimizePerformance();
+    }, 100);
 });
 
 // Handle window resize
 window.addEventListener('resize', () => {
-    // Recalculate animations on resize
-    const navbar = document.getElementById('navbar');
-    if (navbar && window.innerWidth <= 768) {
-        navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+    // Reset card transforms on mobile
+    if (window.innerWidth <= 768) {
+        const cards = document.querySelectorAll('.card-3d');
+        cards.forEach(card => {
+            card.style.transform = 'none';
+        });
+    }
+});
+
+// Add loading animation
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    
+    // Trigger hero animation
+    const heroContent = document.querySelector('.hero-content .fade-in');
+    if (heroContent) {
+        heroContent.style.opacity = '1';
+        heroContent.style.transform = 'translateY(0)';
     }
 });
