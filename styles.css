@@ -1,4 +1,3 @@
-
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -848,4 +847,59 @@ body.loaded .hero-animation {
     .contact-card {
         padding: 1.5rem;
     }
+}
+
+/* Extra Small Devices (max-width: 400px) */
+@media (max-width: 400px) {
+    .container {
+        padding: 0 5px;
+        max-width: 100vw;
+    }
+    .hero-title,
+    .section-title {
+        font-size: 1.3rem;
+    }
+    .hero-content,
+    .glass-card,
+    .skill-category,
+    .project-card,
+    .contact-card {
+        padding: 1rem;
+    }
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+    }
+    .nav-logo span {
+        font-size: 1.1rem;
+    }
+    .nav-menu {
+        gap: 1rem;
+    }
+}
+
+/* Make all grids single column on small screens */
+@media (max-width: 600px) {
+    .about-content,
+    .skills-grid,
+    .projects-grid,
+    .contact-content {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    .hero-content {
+        padding: 0.5rem;
+    }
+    .glass-card,
+    .skill-category,
+    .project-card,
+    .contact-card {
+        padding: 1rem;
+    }
+}
+
+/* Ensure no horizontal scroll on any device */
+body, html {
+    max-width: 100vw;
+    overflow-x: hidden;
 }
