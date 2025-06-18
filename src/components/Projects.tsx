@@ -102,14 +102,14 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors duration-200"
                 >
-                  <Github size={16} style={{ filter: 'none' }} />
+                  <Github size={16} />
                   <span className="text-sm">Code</span>
                 </a>
                 <a
                   href={project.demo}
                   className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors duration-200"
                 >
-                  <ExternalLink size={16} style={{ filter: 'none' }} />
+                  <ExternalLink size={16} />
                   <span className="text-sm">Demo</span>
                 </a>
               </div>

@@ -70,7 +70,7 @@ const About = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
               >
-                <TrendingUp className="w-8 h-8 text-blue-400 mt-1 flex-shrink-0" style={{ filter: 'none' }} />
+                <TrendingUp className="w-8 h-8 text-blue-400 mt-1 flex-shrink-0" />
                 <div>
                   <h4 className="text-xl font-semibold text-white mb-2">Data Analytics</h4>
                   <p className="text-gray-300">Advanced statistical analysis and predictive modeling with expertise in Python, R, and SQL for extracting actionable insights from complex datasets.</p>
@@ -84,7 +84,7 @@ const About = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
               >
-                <Brain className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" style={{ filter: 'none' }} />
+                <Brain className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" />
                 <div>
                   <h4 className="text-xl font-semibold text-white mb-2">Machine Learning</h4>
                   <p className="text-gray-300">Deep learning, neural networks, time series forecasting, and risk assessment using TensorFlow, PyTorch, and scikit-learn.</p>
@@ -98,7 +98,7 @@ const About = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
               >
-                <PieChart className="w-8 h-8 text-green-400 mt-1 flex-shrink-0" style={{ filter: 'none' }} />
+                <PieChart className="w-8 h-8 text-green-400 mt-1 flex-shrink-0" />
                 <div>
                   <h4 className="text-xl font-semibold text-white mb-2">Financial Analytics</h4>
                   <p className="text-gray-300">Portfolio optimization, algorithmic trading, fraud detection, and comprehensive risk management solutions for financial institutions.</p>
