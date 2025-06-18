@@ -1,4 +1,3 @@
-
 // Data
 const skills = {
     "Programming & DBs": {
@@ -38,7 +37,6 @@ const skills = {
 const projects = [
     {
         title: "Synthia - Synthetic Financial Data Generator",
-        category: "ai",
         description: "A generative AI platform that creates high-fidelity, privacy-preserving synthetic financial data using GANs and LLMs for training ML models without exposing sensitive customer information.",
         technologies: ["GANs", "LLMs", "Python", "Cloud Computing"],
         github: "https://github.com/manojkumartechie/synthia-ai",
@@ -46,7 +44,6 @@ const projects = [
     },
     {
         title: "QuantumLeap - Explainable Credit Scoring",
-        category: "fintech",
         description: "Advanced credit scoring model incorporating alternative data sources with Explainable AI (XAI) to provide highly accurate risk scores and transparent decision-making.",
         technologies: ["XGBoost", "SHAP", "LIME", "Python", "Big Data"],
         github: "https://github.com/manojkumartechie/quantumleap-credit",
@@ -54,7 +51,6 @@ const projects = [
     },
     {
         title: "Cerberus - Multi-Layered Fraud Detection",
-        category: "ai",
         description: "Real-time fraud detection engine analyzing credit, debit, and trading transactions using supervised and unsupervised ML models to detect known and emerging fraud patterns.",
         technologies: ["Graph Neural Networks", "Autoencoders", "Kafka", "Python"],
         github: "https://github.com/manojkumartechie/cerberus-fraud",
@@ -62,7 +58,6 @@ const projects = [
     },
     {
         title: "Prism - Personal Finance Dashboard",
-        category: "analytics",
         description: "Comprehensive dashboard providing 360-degree view of financial life, aggregating data from all accounts with real-time analysis and predictive insights.",
         technologies: ["Plaid API", "D3.js", "React", "Real-time Analytics"],
         github: "https://github.com/manojkumartechie/prism-dashboard", 
@@ -70,7 +65,6 @@ const projects = [
     },
     {
         title: "Optimus - RL Portfolio Optimization",
-        category: "ai",
         description: "Portfolio management system using reinforcement learning to dynamically adjust asset allocations, learning from real-time market data to develop adaptive trading policies.",
         technologies: ["Deep Q-Networks", "Time-Series Analysis", "Python", "Cloud Computing"],
         github: "https://github.com/manojkumartechie/optimus-portfolio",
@@ -78,7 +72,6 @@ const projects = [
     },
     {
         title: "Pulse - Market Sentiment Analysis",
-        category: "analytics",
         description: "Real-time platform analyzing news, social media, and regulatory filings to gauge market sentiment using advanced NLP for predictive market insights.",
         technologies: ["NLP", "Apache Flink", "Python", "Real-time Processing"],
         github: "https://github.com/manojkumartechie/pulse-sentiment",
@@ -134,7 +127,21 @@ function initNavigation() {
     }
     
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerHeight = 80;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+            
             if (navMenu) navMenu.classList.remove('active');
             if (navToggle) navToggle.classList.remove('active');
         });
@@ -146,7 +153,7 @@ function initNavigation() {
         if (navbar) {
             if (window.scrollY > 50) {
                 navbar.style.background = 'rgba(0, 0, 0, 0.9)';
-                navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
+                navbar.style.boxShadow = '0 0.5rem 2rem rgba(0, 0, 0, 0.3)';
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.05)';
                 navbar.style.boxShadow = 'none';
@@ -189,7 +196,6 @@ function renderProjects() {
         projectCard.innerHTML = `
             <div class="project-header">
                 <h3 class="project-title">${project.title}</h3>
-                <span class="project-category">${project.category.toUpperCase()}</span>
             </div>
             <div class="project-content">
                 <p class="project-description">${project.description}</p>
@@ -272,7 +278,7 @@ function addInteractiveEffects() {
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(btn => {
         btn.addEventListener('mouseenter', () => {
-            btn.style.transform = 'translateY(-3px) scale(1.05)';
+            btn.style.transform = 'translateY(-0.1875rem) scale(1.05)';
         });
         
         btn.addEventListener('mouseleave', () => {
@@ -308,7 +314,7 @@ function addInteractiveEffects() {
         });
     });
     
-    // Enhanced card tilt effects
+    // Enhanced card tilt effects for desktop only
     const cards = document.querySelectorAll('.card-3d');
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -321,12 +327,14 @@ function addInteractiveEffects() {
                 const rotateX = (y - centerY) / 10;
                 const rotateY = (centerX - x) / 10;
                 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+                card.style.transform = `perspective(62.5rem) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(1.25rem)`;
             }
         });
         
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            if (window.innerWidth > 768) {
+                card.style.transform = 'perspective(62.5rem) rotateX(0) rotateY(0) translateZ(0)';
+            }
         });
     });
 }
@@ -352,7 +360,6 @@ function addRippleKeyframes() {
 function optimizePerformance() {
     // Debounce scroll events
     let scrollTimeout;
-    const originalScrollHandler = window.addEventListener;
     
     // Add will-change property to animated elements
     const animatedElements = document.querySelectorAll('.card-3d, .floating-orb, .btn');
@@ -372,6 +379,38 @@ function optimizePerformance() {
     }, { passive: true });
 }
 
+// Responsive image handling
+function handleResponsiveImages() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.style.maxWidth = '100%';
+        img.style.height = 'auto';
+    });
+}
+
+// Touch device optimizations
+function optimizeForTouch() {
+    if ('ontouchstart' in window) {
+        // Add touch-friendly classes
+        document.body.classList.add('touch-device');
+        
+        // Increase touch targets
+        const touchTargets = document.querySelectorAll('.btn, .nav-link, .social-link, .project-link');
+        touchTargets.forEach(target => {
+            target.style.minHeight = '44px';
+            target.style.minWidth = '44px';
+        });
+        
+        // Disable hover effects on touch devices
+        const hoverElements = document.querySelectorAll('.card-3d');
+        hoverElements.forEach(element => {
+            element.addEventListener('touchstart', () => {
+                element.style.transform = 'none';
+            });
+        });
+    }
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Add ripple keyframes
@@ -386,6 +425,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProjects();
     initSmoothScrolling();
     initParallaxEffects();
+    handleResponsiveImages();
+    optimizeForTouch();
     
     // Initialize reveal animations after content is loaded
     setTimeout(() => {
@@ -404,6 +445,9 @@ window.addEventListener('resize', () => {
             card.style.transform = 'none';
         });
     }
+    
+    // Recalculate responsive elements
+    handleResponsiveImages();
 });
 
 // Add loading animation
@@ -417,3 +461,34 @@ window.addEventListener('load', () => {
         heroContent.style.transform = 'translateY(0)';
     }
 });
+
+// Intersection Observer for performance
+if ('IntersectionObserver' in window) {
+    // Lazy load animations only when elements are visible
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            } else {
+                entry.target.style.animationPlayState = 'paused';
+            }
+        });
+    });
+    
+    document.querySelectorAll('.floating-orb').forEach(orb => {
+        animationObserver.observe(orb);
+    });
+}
+
+// Service Worker for offline functionality (optional)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
