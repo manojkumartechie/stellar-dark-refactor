@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:dev": "vite build --mode development",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -74,5 +75,18 @@
     "tailwindcss": "^3.4.17",
     "typescript": "5.6.3",
     "vite": "^5.4.14"
-  }
+  },
+  "description": "A modern, responsive portfolio website showcasing data science and AI engineering expertise. Built with vanilla HTML, CSS, and JavaScript for optimal performance and GitHub Pages compatibility.",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manojkumartechie/stellar-dark-refactor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manojkumartechie/stellar-dark-refactor/issues"
+  },
+  "homepage": "https://github.com/manojkumartechie/stellar-dark-refactor#readme"
 }
