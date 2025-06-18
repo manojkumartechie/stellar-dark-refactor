@@ -47,6 +47,7 @@ const About = () => (
                 </p>
               </div>
             </div>
+<<<<<<< HEAD
             <div className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
               <Brain className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" />
               <div>
@@ -55,6 +56,61 @@ const About = () => (
                   Deep learning, neural networks, time series forecasting, and risk assessment using TensorFlow, PyTorch, and scikit-learn.
                 </p>
               </div>
+=======
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <h3 className="text-2xl font-bold text-white mb-8">Core Strengths</h3>
+            
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
+              >
+                <TrendingUp className="w-8 h-8 text-blue-400 mt-1 flex-shrink-0" />
+                <div>
+                  <h4 className="text-xl font-semibold text-white mb-2">Data Analytics</h4>
+                  <p className="text-gray-300">Advanced statistical analysis and predictive modeling with expertise in Python, R, and SQL for extracting actionable insights from complex datasets.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
+              >
+                <Brain className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" />
+                <div>
+                  <h4 className="text-xl font-semibold text-white mb-2">Machine Learning</h4>
+                  <p className="text-gray-300">Deep learning, neural networks, time series forecasting, and risk assessment using TensorFlow, PyTorch, and scikit-learn.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50"
+              >
+                <PieChart className="w-8 h-8 text-green-400 mt-1 flex-shrink-0" />
+                <div>
+                  <h4 className="text-xl font-semibold text-white mb-2">Financial Analytics</h4>
+                  <p className="text-gray-300">Portfolio optimization, algorithmic trading, fraud detection, and comprehensive risk management solutions for financial institutions.</p>
+                </div>
+              </motion.div>
+>>>>>>> 18b43fed0822f56f8ea0b7ae668c6b34e0cfd187
             </div>
             <div className="flex items-start space-x-4 bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
               <PieChart className="w-8 h-8 text-green-400 mt-1 flex-shrink-0" />

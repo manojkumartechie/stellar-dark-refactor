@@ -74,7 +74,11 @@ const Projects = () => {
                   className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors duration-200"
                   aria-label={`View ${project.title} code on GitHub`}
                 >
+<<<<<<< HEAD
                   <Github size={16} style={{ filter: "none" }} />
+=======
+                  <Github size={16} />
+>>>>>>> 18b43fed0822f56f8ea0b7ae668c6b34e0cfd187
                   <span className="text-sm">Code</span>
                 </a>
                 <a
@@ -82,7 +86,11 @@ const Projects = () => {
                   className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors duration-200"
                   aria-label={`View ${project.title} demo`}
                 >
+<<<<<<< HEAD
                   <ExternalLink size={16} style={{ filter: "none" }} />
+=======
+                  <ExternalLink size={16} />
+>>>>>>> 18b43fed0822f56f8ea0b7ae668c6b34e0cfd187
                   <span className="text-sm">Demo</span>
                 </a>
               </div>
