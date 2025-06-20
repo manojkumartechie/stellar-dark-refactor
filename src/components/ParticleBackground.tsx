@@ -1,120 +1,9 @@
-import React, { useCallback } from 'react';
-import Particles from 'react-tsparticles';
-import { loadSlim } from 'tsparticles-slim';
-import type { Container, Engine } from 'tsparticles';
+
+import React from 'react';
 
 const ParticleBackground = () => {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine);
-  }, []);
-
-  const particlesLoaded = useCallback(async (container: Container | undefined) => {
-    // Particles loaded callback
-  }, []);
-
   return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={{
-        background: {
-          color: {
-            value: "transparent",
-          },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
-              mode: "push",
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: ["#3b82f6", "#8b5cf6", "#06b6d4", "#10b981"],
-          },
-          links: {
-            color: "#3b82f6",
-            distance: 150,
-            enable: true,
-            opacity: 0.2,
-            width: 1,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "bounce",
-            },
-            random: false,
-            speed: 1,
-            straight: false,
-          },
-          number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
-            value: 80,
-          },
-          opacity: {
-            value: 0.3,
-            random: true,
-            animation: {
-              enable: true,
-              speed: 1,
-              minimumValue: 0.1,
-              sync: false,
-            },
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 1, max: 3 },
-            random: true,
-            animation: {
-              enable: true,
-              speed: 2,
-              minimumValue: 0.5,
-              sync: false,
-            },
-          },
-        },
-        detectRetina: true,
-        responsive: [
-          {
-            maxWidth: 768,
-            options: {
-              particles: {
-                number: {
-                  value: 40,
-                },
-                links: {
-                  distance: 100,
-                },
-              },
-            },
-          },
-        ],
-      }}
+    <div
       style={{
         position: 'fixed',
         top: 0,
@@ -122,8 +11,26 @@ const ParticleBackground = () => {
         width: '100%',
         height: '100%',
         zIndex: -1,
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+        opacity: 0.8,
       }}
-    />
+    >
+      {/* Simple animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-30 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`,
+            }}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
