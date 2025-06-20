@@ -8,8 +8,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^9.96.1",
+    "@react-three/fiber": "^8.15.19",
+    "framer-motion": "^11.13.1",
+    "lucide-react": "^0.453.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.18.0",
+    "react-icons": "^4.6.0",
     "framer-motion": "^11.13.1",
     "@react-three/fiber": "^8.15.19",
     "@react-three/drei": "^9.96.1",
@@ -21,6 +27,13 @@
     "react-tsparticles": "^3.10.0",
     "react-router-dom": "^6.18.0",
     "react-icons": "^4.6.0"
+,
+    "react-tsparticles": "^2.12.2",
+    "three": "^0.160.1",
+    "tsparticles": "^3.0.3",
+    "tsparticles-slim": "^2.12.0",
+    "wouter": "^3.3.5"
+
   },
   "devDependencies": {
     "@types/react": "^18.3.11",
@@ -28,6 +41,7 @@
     "@types/three": "^0.160.0",
     "@vitejs/plugin-react": "^4.3.2",
     "typescript": "5.6.3",
-    "vite": "^5.4.14"
+    "vite": "^5.4.14",
+    "build:dev": "vite build --mode development"
   }
 }
