@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Rocket, Github, Linkedin, ExternalLink } from 'lucide-react';
-import ThreeScene from '../components/ThreeScene';
+import { Download, Rocket, Github, Linkedin, ExternalLink, BarChart3, TrendingUp, Database } from 'lucide-react';
+import DataVisualization from '../components/DataVisualization';
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState('');
@@ -56,6 +56,12 @@ const Hero = () => {
       label: 'Kaggle',
       color: 'hover:text-cyan-400'
     }
+  ];
+
+  const stats = [
+    { icon: BarChart3, value: '50+', label: 'Projects Completed', color: 'text-blue-400' },
+    { icon: TrendingUp, value: '95%', label: 'Model Accuracy', color: 'text-green-400' },
+    { icon: Database, value: '10TB+', label: 'Data Processed', color: 'text-purple-400' },
   ];
 
   const pageVariants = {
@@ -119,21 +125,21 @@ const Hero = () => {
       {/* Gradient Blur Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-cyan-900/20 backdrop-blur-3xl" />
       
-      {/* 3D Scene Background */}
+      {/* Interactive Data Visualization Background */}
       <div className="absolute inset-0 opacity-30">
-        <ThreeScene />
+        <DataVisualization />
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.div
-          className="max-w-4xl mx-auto"
+          className="max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Profile Image */}
           <motion.div
-            className="w-32 h-32 mx-auto mb-8 rounded-full glass-morphism flex items-center justify-center"
+            className="w-40 h-40 mx-auto mb-8 rounded-full glass-morphism flex items-center justify-center relative overflow-hidden"
             variants={itemVariants}
             whileHover={{ 
               scale: 1.1, 
@@ -143,7 +149,7 @@ const Hero = () => {
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <motion.div 
-              className="w-28 h-28 rounded-full bg-gradient-to-br from-blue-400 to-purple-500"
+              className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center"
               animate={{ 
                 rotate: 360,
                 scale: [1, 1.05, 1]
@@ -152,7 +158,13 @@ const Hero = () => {
                 rotate: { duration: 20, repeat: Infinity, ease: "linear" },
                 scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
               }}
-            />
+            >
+              <img 
+                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                alt="Manoj Kumar K" 
+                className="w-32 h-32 rounded-full object-cover"
+              />
+            </motion.div>
           </motion.div>
 
           {/* Main Title */}
@@ -201,21 +213,46 @@ const Hero = () => {
             </motion.span>
           </motion.h2>
 
-          {/* Description */}
+          {/* Professional Summary */}
           <motion.p
-            className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
-            🚀 Experienced in identifying and resolving complex data challenges, delivering{' '}
-            <motion.strong 
+            🚀 Transforming complex data into <motion.strong 
               className="text-white"
               whileHover={{ scale: 1.05, color: "#3b82f6" }}
             >
-              actionable insights
-            </motion.strong>
-            , and supporting data-driven decision-making with expertise in machine learning, 
-            big data technologies, and financial analytics.
+              actionable business insights
+            </motion.strong> through advanced machine learning, 
+            statistical analysis, and innovative AI solutions. Specialized in financial analytics, 
+            fraud detection, and predictive modeling with proven track record of delivering 
+            high-impact data science projects.
           </motion.p>
+
+          {/* Stats Section */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto"
+            variants={itemVariants}
+          >
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                className="glass-morphism p-6 rounded-xl text-center"
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.2)"
+                }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 + index * 0.1 }}
+              >
+                <stat.icon className={`w-8 h-8 mx-auto mb-2 ${stat.color}`} />
+                <div className={`text-3xl font-bold ${stat.color} mb-1`}>{stat.value}</div>
+                <div className="text-gray-400 text-sm">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* Action Buttons */}
           <motion.div

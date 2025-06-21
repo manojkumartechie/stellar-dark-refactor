@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion } from 'framer-motion';
-import { Home, User, Code, Briefcase, Mail } from 'lucide-react';
+import { Home, User, Code, Briefcase, Clock, Mail } from 'lucide-react';
 
 const Navigation = () => {
   const [location] = useLocation();
@@ -11,6 +11,7 @@ const Navigation = () => {
     { path: '/about', icon: User, label: 'About' },
     { path: '/skills', icon: Code, label: 'Skills' },
     { path: '/projects', icon: Briefcase, label: 'Projects' },
+    { path: '/experience', icon: Clock, label: 'Experience' },
     { path: '/contact', icon: Mail, label: 'Contact' },
   ];
 

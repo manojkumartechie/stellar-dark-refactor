@@ -9,6 +9,7 @@ import Hero from './pages/Hero';
 import About from './pages/About';
 import Skills from './pages/Skills';
 import Projects from './pages/Projects';
+import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import './App.css';
@@ -23,6 +24,7 @@ function AnimatedRoutes() {
         <Route path="/about" component={About} />
         <Route path="/skills" component={Skills} />
         <Route path="/projects" component={Projects} />
+        <Route path="/experience" component={Experience} />
         <Route path="/contact" component={Contact} />
       </Switch>
     </AnimatePresence>
