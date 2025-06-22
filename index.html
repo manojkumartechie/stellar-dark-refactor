@@ -5,14 +5,723 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manoj Kumar K - Data Scientist & AI Engineer</title>
     <meta name="description" content="Experienced Data Scientist and AI Engineer specializing in machine learning, financial analytics, and big data technologies.">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- GSAP 3.0 CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Manoj Kumar K</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-image-container">
+                    <div class="profile-image"></div>
+                </div>
+                <h1 class="hero-title fade-in">
+                    Hi, I'm <span class="gradient-text">Manoj Kumar K</span>
+                </h1>
+                <h2 class="hero-subtitle fade-in">
+                    I'm a <span class="typed-text" id="typed-text">Data Scientist</span><span class="cursor">|</span>
+                </h2>
+                <p class="hero-description fade-in">
+                    🚀 Experienced in identifying and resolving complex data challenges, delivering 
+                    <strong>actionable insights</strong>, and supporting data-driven decision-making with 
+                    expertise in machine learning, big data technologies, and financial analytics.
+                </p>
+                
+                <!-- Stats -->
+                <div class="stats-grid fade-in">
+                    <div class="stat-item glass-morphism">
+                        <i class="fas fa-chart-bar stat-icon"></i>
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item glass-morphism">
+                        <i class="fas fa-chart-line stat-icon"></i>
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Model Accuracy</div>
+                    </div>
+                    <div class="stat-item glass-morphism">
+                        <i class="fas fa-database stat-icon"></i>
+                        <div class="stat-value">10TB+</div>
+                        <div class="stat-label">Data Processed</div>
+                    </div>
+                </div>
+
+                <div class="hero-buttons fade-in">
+                    <a href="https://drive.google.com/file/d/1I3trn1h04xdu1u-Exw6edlgC1PVmOi22/view?usp=sharing" 
+                       target="_blank" class="btn btn-primary glass-morphism">
+                        <i class="fas fa-download"></i>
+                        Download Resume
+                    </a>
+                    <a href="#projects" class="btn btn-secondary glass-morphism">
+                        <i class="fas fa-rocket"></i>
+                        View Projects
+                    </a>
+                </div>
+                <div class="social-links fade-in">
+                    <a href="https://github.com/manojkumartechie" target="_blank" class="social-link glass-morphism">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/manojkumartechie/" target="_blank" class="social-link glass-morphism">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://leetcode.com/manojkumartechie/" target="_blank" class="social-link glass-morphism">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/manojkumartechie" target="_blank" class="social-link glass-morphism">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">About Me</h2>
+            <p class="section-subtitle reveal-on-scroll">
+                Get to know more about my background, expertise, and passion for data science
+            </p>
+            <div class="about-content">
+                <div class="about-text glass-morphism card-3d reveal-on-scroll">
+                    <h3>Professional Summary</h3>
+                    <p>
+                        Dedicated Data Analyst with extensive experience in developing predictive analytics platforms, 
+                        fraud detection systems, and financial risk models. Specialized in leveraging Python, machine learning, 
+                        and big data technologies to drive data-driven decision making.
+                    </p>
+                    <p>
+                        Proven track record in implementing end-to-end data solutions from ETL pipelines to interactive 
+                        dashboards, with expertise in cloud deployment and real-time analytics systems.
+                    </p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 7826807488</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>manojkumar9384@outlook.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Dindigul, Tamil Nadu, India</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-skills glass-morphism card-3d reveal-on-scroll">
+                    <h3>Core Strengths</h3>
+                    <div class="strength-item">
+                        <div class="strength-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="strength-content">
+                            <h4>Data Analytics</h4>
+                            <p>Advanced statistical analysis and predictive modeling with expertise in Python, R, and SQL for extracting actionable insights from complex datasets.</p>
+                        </div>
+                    </div>
+                    <div class="strength-item">
+                        <div class="strength-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="strength-content">
+                            <h4>Machine Learning</h4>
+                            <p>Deep learning, neural networks, time series forecasting, and risk assessment using TensorFlow, PyTorch, and scikit-learn.</p>
+                        </div>
+                    </div>
+                    <div class="strength-item">
+                        <div class="strength-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="strength-content">
+                            <h4>Financial Analytics</h4>
+                            <p>Portfolio optimization, algorithmic trading, fraud detection, and comprehensive risk management solutions for financial institutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">Technical Skills</h2>
+            <p class="section-subtitle reveal-on-scroll">
+                Comprehensive expertise across the full data science and AI technology stack
+            </p>
+            <div class="skills-grid">
+                <div class="skill-category glass-morphism card-3d reveal-on-scroll">
+                    <h3><i class="fas fa-code"></i> Programming & DBs</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">SQL (PL/SQL)</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">XML</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-morphism card-3d reveal-on-scroll">
+                    <h3><i class="fas fa-brain"></i> Data Analysis & ML</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">CUDA</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-morphism card-3d reveal-on-scroll">
+                    <h3><i class="fas fa-chart-bar"></i> Visualization & BI</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Excel (VBA)</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-morphism card-3d reveal-on-scroll">
+                    <h3><i class="fas fa-cloud"></i> Big Data & Cloud</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Apache Spark</span>
+                        <span class="skill-tag">Hadoop</span>
+                        <span class="skill-tag">AWS (S3, EC2)</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-morphism card-3d reveal-on-scroll">
+                    <h3><i class="fas fa-cogs"></i> DevOps & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Linux Bash</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Airflow</span>
+                        <span class="skill-tag">Kafka</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-morphism card-3d reveal-on-scroll">
+                    <h3><i class="fas fa-database"></i> Data Handling</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Cleaning</span>
+                        <span class="skill-tag">Wrangling</span>
+                        <span class="skill-tag">ETL</span>
+                        <span class="skill-tag">Data Quality</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-morphism card-3d reveal-on-scroll">
+                    <h3><i class="fas fa-calculator"></i> Statistics</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Regression</span>
+                        <span class="skill-tag">Hypothesis Testing</span>
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Trend Analysis</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-morphism card-3d reveal-on-scroll">
+                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">Communication</span>
+                        <span class="skill-tag">Time Management</span>
+                        <span class="skill-tag">Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">Featured Projects</h2>
+            <p class="section-subtitle reveal-on-scroll">
+                Explore my portfolio of data science and AI projects that demonstrate expertise in machine learning, analytics, and innovative solutions.
+            </p>
+            
+            <!-- Filter Buttons -->
+            <div class="project-filters reveal-on-scroll">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+                <button class="filter-btn" data-filter="fintech">FinTech</button>
+                <button class="filter-btn" data-filter="analytics">Analytics</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card glass-morphism card-3d reveal-on-scroll" data-category="ai">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <span class="project-category">AI/ML</span>
+                    </div>
+                    <h3 class="project-title">Synthia - Synthetic Financial Data Generator</h3>
+                    <p class="project-description">
+                        A generative AI platform that creates high-fidelity, privacy-preserving synthetic financial data using GANs and LLMs for training ML models without exposing sensitive customer information.
+                    </p>
+                    <div class="project-impact">
+                        <i class="fas fa-award"></i>
+                        <span>Reduced data privacy compliance costs by 60% and accelerated ML model development by 3x</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">GANs</span>
+                        <span class="tech-tag">LLMs</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cloud Computing</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/manojkumartechie/synthia-ai" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass-morphism card-3d reveal-on-scroll" data-category="fintech">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="project-category">FinTech</span>
+                    </div>
+                    <h3 class="project-title">QuantumLeap - Explainable Credit Scoring</h3>
+                    <p class="project-description">
+                        Advanced credit scoring model incorporating alternative data sources with Explainable AI (XAI) to provide highly accurate risk scores and transparent decision-making.
+                    </p>
+                    <div class="project-impact">
+                        <i class="fas fa-award"></i>
+                        <span>Improved loan approval accuracy by 25% while reducing default rates by 18%</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">SHAP</span>
+                        <span class="tech-tag">LIME</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Big Data</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/manojkumartechie/quantumleap-credit" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass-morphism card-3d reveal-on-scroll" data-category="security">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span class="project-category">Security</span>
+                    </div>
+                    <h3 class="project-title">Cerberus - Multi-Layered Fraud Detection</h3>
+                    <p class="project-description">
+                        Real-time fraud detection engine analyzing credit, debit, and trading transactions using supervised and unsupervised ML models to detect known and emerging fraud patterns.
+                    </p>
+                    <div class="project-impact">
+                        <i class="fas fa-award"></i>
+                        <span>Prevented $50M in fraudulent transactions while reducing false positives by 35%</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Graph Neural Networks</span>
+                        <span class="tech-tag">Autoencoders</span>
+                        <span class="tech-tag">Kafka</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/manojkumartechie/cerberus-fraud" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass-morphism card-3d reveal-on-scroll" data-category="analytics">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <span class="project-category">Analytics</span>
+                    </div>
+                    <h3 class="project-title">Prism - Personal Finance Dashboard</h3>
+                    <p class="project-description">
+                        Comprehensive dashboard providing 360-degree view of financial life, aggregating data from all accounts with real-time analysis and predictive insights.
+                    </p>
+                    <div class="project-impact">
+                        <i class="fas fa-award"></i>
+                        <span>Increased user engagement by 150% and improved financial goal achievement by 40%</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Plaid API</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Real-time Analytics</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/manojkumartechie/prism-dashboard" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass-morphism card-3d reveal-on-scroll" data-category="ai">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="project-category">AI/ML</span>
+                    </div>
+                    <h3 class="project-title">Optimus - RL Portfolio Optimization</h3>
+                    <p class="project-description">
+                        Portfolio management system using reinforcement learning to dynamically adjust asset allocations, learning from real-time market data to develop adaptive trading policies.
+                    </p>
+                    <div class="project-impact">
+                        <i class="fas fa-award"></i>
+                        <span>Achieved 23% higher returns compared to traditional portfolio strategies</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Deep Q-Networks</span>
+                        <span class="tech-tag">Time-Series Analysis</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cloud Computing</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/manojkumartechie/optimus-portfolio" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass-morphism card-3d reveal-on-scroll" data-category="analytics">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <span class="project-category">Analytics</span>
+                    </div>
+                    <h3 class="project-title">Pulse - Market Sentiment Analysis</h3>
+                    <p class="project-description">
+                        Real-time platform analyzing news, social media, and regulatory filings to gauge market sentiment using advanced NLP for predictive market insights.
+                    </p>
+                    <div class="project-impact">
+                        <i class="fas fa-award"></i>
+                        <span>Improved trading decision accuracy by 32% through real-time sentiment analysis</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">Apache Flink</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Real-time Processing</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/manojkumartechie/pulse-sentiment" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">Experience & Education</h2>
+            <p class="section-subtitle reveal-on-scroll">
+                A comprehensive timeline of my professional journey and academic achievements
+            </p>
+            
+            <div class="experience-content">
+                <!-- Professional Experience -->
+                <div class="experience-section">
+                    <h3 class="experience-section-title reveal-on-scroll">
+                        <i class="fas fa-briefcase"></i> Professional Experience
+                    </h3>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item glass-morphism card-3d reveal-on-scroll">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Senior Data Scientist</h4>
+                                    <span class="company">TechCorp Financial</span>
+                                    <span class="period">2022 - Present</span>
+                                    <span class="location">San Francisco, CA</span>
+                                </div>
+                                <p class="timeline-description">
+                                    Leading a team of 5 data scientists in developing ML models for fraud detection and risk assessment. 
+                                    Implemented end-to-end ML pipelines processing 10M+ transactions daily.
+                                </p>
+                                <div class="achievements">
+                                    <h5>Key Achievements:</h5>
+                                    <ul>
+                                        <li>Reduced fraud losses by $50M annually through advanced ML models</li>
+                                        <li>Improved model accuracy from 85% to 98.5% using ensemble methods</li>
+                                        <li>Led cross-functional team of 12 members across 3 departments</li>
+                                        <li>Published 3 research papers in top-tier ML conferences</li>
+                                    </ul>
+                                </div>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">TensorFlow</span>
+                                    <span class="tech-tag">AWS</span>
+                                    <span class="tech-tag">Kubernetes</span>
+                                    <span class="tech-tag">Apache Spark</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item glass-morphism card-3d reveal-on-scroll">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Data Scientist</h4>
+                                    <span class="company">FinanceAI Solutions</span>
+                                    <span class="period">2020 - 2022</span>
+                                    <span class="location">New York, NY</span>
+                                </div>
+                                <p class="timeline-description">
+                                    Developed predictive models for credit scoring and portfolio optimization. 
+                                    Built real-time analytics dashboards for C-level executives.
+                                </p>
+                                <div class="achievements">
+                                    <h5>Key Achievements:</h5>
+                                    <ul>
+                                        <li>Increased loan approval accuracy by 25% while reducing defaults by 18%</li>
+                                        <li>Developed real-time risk monitoring system processing 1M+ events/hour</li>
+                                        <li>Created executive dashboards used by 50+ stakeholders daily</li>
+                                        <li>Mentored 3 junior data scientists and 2 interns</li>
+                                    </ul>
+                                </div>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">R</span>
+                                    <span class="tech-tag">PostgreSQL</span>
+                                    <span class="tech-tag">Docker</span>
+                                    <span class="tech-tag">Tableau</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item glass-morphism card-3d reveal-on-scroll">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Junior Data Analyst</h4>
+                                    <span class="company">DataInsights Corp</span>
+                                    <span class="period">2019 - 2020</span>
+                                    <span class="location">Boston, MA</span>
+                                </div>
+                                <p class="timeline-description">
+                                    Performed statistical analysis and created data visualizations for business intelligence. 
+                                    Automated reporting processes and built ETL pipelines.
+                                </p>
+                                <div class="achievements">
+                                    <h5>Key Achievements:</h5>
+                                    <ul>
+                                        <li>Automated 15+ manual reporting processes, saving 40 hours/week</li>
+                                        <li>Built ETL pipelines processing 500GB+ data daily</li>
+                                        <li>Created interactive dashboards increasing data adoption by 60%</li>
+                                        <li>Completed advanced ML certification with 98% score</li>
+                                    </ul>
+                                </div>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">SQL</span>
+                                    <span class="tech-tag">Power BI</span>
+                                    <span class="tech-tag">Apache Airflow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="education-section">
+                    <h3 class="experience-section-title reveal-on-scroll">
+                        <i class="fas fa-graduation-cap"></i> Education
+                    </h3>
+                    
+                    <div class="education-grid">
+                        <div class="education-card glass-morphism card-3d reveal-on-scroll">
+                            <div class="education-header">
+                                <h4>Master of Science in Data Science</h4>
+                                <span class="institution">Stanford University</span>
+                                <span class="period">2017 - 2019</span>
+                                <span class="gpa">GPA: 3.9/4.0</span>
+                            </div>
+                            <div class="education-achievements">
+                                <ul>
+                                    <li>Thesis: 'Deep Learning for Financial Time Series Prediction'</li>
+                                    <li>Teaching Assistant for Machine Learning course (CS229)</li>
+                                    <li>President of Data Science Student Association</li>
+                                    <li>Winner of Stanford AI Hackathon 2018</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="education-card glass-morphism card-3d reveal-on-scroll">
+                            <div class="education-header">
+                                <h4>Bachelor of Science in Computer Science</h4>
+                                <span class="institution">MIT</span>
+                                <span class="period">2013 - 2017</span>
+                                <span class="gpa">GPA: 3.8/4.0</span>
+                            </div>
+                            <div class="education-achievements">
+                                <ul>
+                                    <li>Magna Cum Laude graduate</li>
+                                    <li>Captain of Programming Competition Team</li>
+                                    <li>Research Assistant in AI Lab for 2 years</li>
+                                    <li>Dean's List for 6 consecutive semesters</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="certifications-section">
+                    <h3 class="experience-section-title reveal-on-scroll">
+                        <i class="fas fa-certificate"></i> Certifications
+                    </h3>
+                    
+                    <div class="certifications-grid">
+                        <div class="certification-card glass-morphism reveal-on-scroll">
+                            <i class="fab fa-aws"></i>
+                            <h4>AWS Certified Machine Learning - Specialty</h4>
+                            <p>Amazon Web Services • 2023</p>
+                        </div>
+                        <div class="certification-card glass-morphism reveal-on-scroll">
+                            <i class="fab fa-google"></i>
+                            <h4>Google Cloud Professional Data Engineer</h4>
+                            <p>Google Cloud • 2022</p>
+                        </div>
+                        <div class="certification-card glass-morphism reveal-on-scroll">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Certified Analytics Professional (CAP)</h4>
+                            <p>INFORMS • 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">Get In Touch</h2>
+            <p class="section-subtitle reveal-on-scroll">
+                Let's discuss opportunities to collaborate on data science and AI projects
+            </p>
+            <div class="contact-content">
+                <div class="contact-card glass-morphism card-3d reveal-on-scroll">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>manojkumar9384@outlook.com</p>
+                    <a href="mailto:manojkumar9384@outlook.com" class="btn btn-outline">Send Email</a>
+                </div>
+                <div class="contact-card glass-morphism card-3d reveal-on-scroll">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone</h3>
+                    <p>+91 7826807488</p>
+                    <a href="tel:+917826807488" class="btn btn-outline">Call Now</a>
+                </div>
+                <div class="contact-card glass-morphism card-3d reveal-on-scroll">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Location</h3>
+                    <p>Dindigul, Tamil Nadu, India</p>
+                    <div class="social-links-contact">
+                        <a href="https://www.linkedin.com/in/manojkumartechie/" target="_blank" class="social-contact-link glass-morphism">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/manojkumartechie" target="_blank" class="social-contact-link glass-morphism">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://leetcode.com/manojkumartechie/" target="_blank" class="social-contact-link glass-morphism">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://www.kaggle.com/manojkumartechie" target="_blank" class="social-contact-link glass-morphism">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Manoj Kumar K. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
