@@ -137,36 +137,6 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          {/* Profile Image */}
-          <motion.div
-            className="w-40 h-40 mx-auto mb-8 rounded-full glass-morphism flex items-center justify-center relative overflow-hidden"
-            variants={itemVariants}
-            whileHover={{ 
-              scale: 1.1, 
-              rotate: 5,
-              boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <motion.div 
-              className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center"
-              animate={{ 
-                rotate: 360,
-                scale: [1, 1.05, 1]
-              }}
-              transition={{ 
-                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-              }}
-            >
-              <img 
-                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" 
-                alt="Manoj Kumar K" 
-                className="w-32 h-32 rounded-full object-cover"
-              />
-            </motion.div>
-          </motion.div>
-
           {/* Main Title */}
           <motion.h1
             className="text-5xl md:text-7xl font-bold mb-6"
