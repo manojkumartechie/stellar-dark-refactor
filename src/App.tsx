@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'wouter';
 import { AnimatePresence } from 'framer-motion';
 import { useLocation } from 'wouter';
-import Navigation from './components/Navigation';
+import GSAPNavigation from './components/GSAPNavigation';
 import ParticleBackground from './components/ParticleBackground';
 import AnimatedBackground from './components/AnimatedBackground';
 import Hero from './pages/Hero';
@@ -37,7 +37,7 @@ function App() {
       <AnimatedBackground />
       <ParticleBackground />
       <Router>
-        <Navigation />
+        <GSAPNavigation />
         <main>
           <AnimatedRoutes />
         </main>
