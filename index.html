@@ -12,6 +12,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- GSAP 3.0 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,21 +25,72 @@
             <div class="nav-logo">
                 <span class="logo-text">Manoj Kumar K</span>
             </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </div>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-button" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navigation-menu">
+                <span class="hamburger-line hamburger-line-1"></span>
+                <span class="hamburger-line hamburger-line-2"></span>
+                <span class="hamburger-line hamburger-line-3"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Overlay -->
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+
+    <!-- Slide-in Navigation Menu -->
+    <div class="slide-menu" id="slide-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <!-- Close Button -->
+        <button class="close-button" id="close-btn" aria-label="Close navigation menu">
+            <span class="close-line close-line-1"></span>
+            <span class="close-line close-line-2"></span>
+        </button>
+
+        <!-- Menu Items -->
+        <div class="menu-items">
+            <div class="menu-item">
+                <a href="#home" class="menu-link" aria-current="page">
+                    <span class="menu-text">Home</span>
+                    <span class="menu-underline"></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="#about" class="menu-link">
+                    <span class="menu-text">About</span>
+                    <span class="menu-underline"></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="#skills" class="menu-link">
+                    <span class="menu-text">Skills</span>
+                    <span class="menu-underline"></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="#projects" class="menu-link">
+                    <span class="menu-text">Projects</span>
+                    <span class="menu-underline"></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="#experience" class="menu-link">
+                    <span class="menu-text">Experience</span>
+                    <span class="menu-underline"></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="#contact" class="menu-link">
+                    <span class="menu-text">Contact</span>
+                    <span class="menu-underline"></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Menu Footer -->
+        <div class="menu-footer">
+            <p class="menu-footer-text">Let's build something amazing together</p>
+        </div>
+    </div>
 
     <!-- Animated Background -->
     <div class="animated-bg">

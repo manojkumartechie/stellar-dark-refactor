@@ -1,3 +1,222 @@
+// GSAP Navigation System
+class GSAPNavigation {
+    constructor() {
+        this.isMenuOpen = false;
+        this.tl = null;
+        
+        // DOM elements
+        this.hamburgerBtn = document.getElementById('hamburger-btn');
+        this.closeBtn = document.getElementById('close-btn');
+        this.slideMenu = document.getElementById('slide-menu');
+        this.menuOverlay = document.getElementById('menu-overlay');
+        this.menuItems = document.querySelectorAll('.menu-item');
+        this.menuFooter = document.querySelector('.menu-footer');
+        this.menuLinks = document.querySelectorAll('.menu-link');
+        
+        this.init();
+    }
+    
+    init() {
+        this.createTimeline();
+        this.bindEvents();
+        this.handleKeyboardNavigation();
+        this.setActiveLink();
+    }
+    
+    createTimeline() {
+        // Create GSAP timeline
+        this.tl = gsap.timeline({ paused: true });
+        
+        // Set initial states
+        gsap.set(this.slideMenu, { x: '100%' });
+        gsap.set(this.menuOverlay, { opacity: 0, visibility: 'hidden' });
+        gsap.set(this.menuItems, { x: 50, opacity: 0 });
+        gsap.set(this.closeBtn, { scale: 0, rotation: -180, opacity: 0 });
+        gsap.set(this.menuFooter, { y: 20, opacity: 0 });
+        
+        // Build animation timeline
+        this.tl
+            .to(this.menuOverlay, { 
+                opacity: 1, 
+                visibility: 'visible',
+                duration: 0.3, 
+                ease: 'power2.out' 
+            })
+            .to(this.slideMenu, { 
+                x: '0%', 
+                duration: 0.6, 
+                ease: 'power3.out' 
+            }, '-=0.1')
+            .to(this.closeBtn, { 
+                scale: 1, 
+                rotation: 0, 
+                opacity: 1,
+                duration: 0.4, 
+                ease: 'back.out(1.7)' 
+            }, '-=0.3')
+            .to(this.menuItems, { 
+                x: 0, 
+                opacity: 1, 
+                duration: 0.4, 
+                stagger: 0.1, 
+                ease: 'power2.out',
+                onComplete: () => {
+                    this.menuItems.forEach(item => item.classList.add('active'));
+                }
+            }, '-=0.2')
+            .to(this.menuFooter, {
+                y: 0,
+                opacity: 1,
+                duration: 0.3,
+                ease: 'power2.out',
+                onComplete: () => {
+                    this.menuFooter.classList.add('active');
+                }
+            }, '-=0.1');
+    }
+    
+    bindEvents() {
+        // Hamburger button click
+        this.hamburgerBtn.addEventListener('click', () => this.openMenu());
+        
+        // Close button click
+        this.closeBtn.addEventListener('click', () => this.closeMenu());
+        
+        // Overlay click
+        this.menuOverlay.addEventListener('click', () => this.closeMenu());
+        
+        // Menu link clicks
+        this.menuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                this.navigateToSection(targetId);
+                this.closeMenu();
+            });
+        });
+        
+        // Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isMenuOpen) {
+                this.closeMenu();
+            }
+        });
+    }
+    
+    handleKeyboardNavigation() {
+        // Tab navigation within menu
+        this.slideMenu.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                const focusableElements = this.slideMenu.querySelectorAll(
+                    'button, a, [tabindex]:not([tabindex="-1"])'
+                );
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.shiftKey && document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                } else if (!e.shiftKey && document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        });
+    }
+    
+    openMenu() {
+        if (this.isMenuOpen) return;
+        
+        this.isMenuOpen = true;
+        document.body.style.overflow = 'hidden';
+        
+        // Update ARIA attributes
+        this.hamburgerBtn.setAttribute('aria-expanded', 'true');
+        this.menuOverlay.setAttribute('aria-hidden', 'false');
+        
+        // Animate hamburger to X
+        gsap.to('.hamburger-line-1', { rotation: 45, y: 6, duration: 0.3 });
+        gsap.to('.hamburger-line-2', { opacity: 0, duration: 0.3 });
+        gsap.to('.hamburger-line-3', { rotation: -45, y: -6, duration: 0.3 });
+        
+        // Play timeline
+        this.tl.play();
+        
+        // Focus management
+        setTimeout(() => {
+            this.closeBtn.focus();
+        }, 600);
+    }
+    
+    closeMenu() {
+        if (!this.isMenuOpen) return;
+        
+        this.isMenuOpen = false;
+        document.body.style.overflow = '';
+        
+        // Update ARIA attributes
+        this.hamburgerBtn.setAttribute('aria-expanded', 'false');
+        this.menuOverlay.setAttribute('aria-hidden', 'true');
+        
+        // Animate X back to hamburger
+        gsap.to('.hamburger-line-1', { rotation: 0, y: 0, duration: 0.3 });
+        gsap.to('.hamburger-line-2', { opacity: 1, duration: 0.3 });
+        gsap.to('.hamburger-line-3', { rotation: 0, y: 0, duration: 0.3 });
+        
+        // Remove active classes
+        this.menuItems.forEach(item => item.classList.remove('active'));
+        this.menuFooter.classList.remove('active');
+        
+        // Reverse timeline
+        this.tl.reverse();
+        
+        // Focus management
+        setTimeout(() => {
+            this.hamburgerBtn.focus();
+        }, 600);
+    }
+    
+    navigateToSection(targetId) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    }
+    
+    setActiveLink() {
+        // Set active link based on current section
+        const sections = document.querySelectorAll('section[id]');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.getAttribute('id');
+                    
+                    // Remove active from all links
+                    this.menuLinks.forEach(link => {
+                        link.removeAttribute('aria-current');
+                    });
+                    
+                    // Add active to current link
+                    const activeLink = document.querySelector(`.menu-link[href="#${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.setAttribute('aria-current', 'page');
+                    }
+                }
+            });
+        }, {
+            threshold: 0.5,
+            rootMargin: '-80px 0px -50% 0px'
+        });
+        
+        sections.forEach(section => observer.observe(section));
+    }
+}
+
 // Typing Animation
 class TypeWriter {
     constructor(element, words, wait = 3000) {
@@ -41,84 +260,6 @@ class TypeWriter {
     }
 }
 
-// Navigation
-class Navigation {
-    constructor() {
-        this.navbar = document.getElementById('navbar');
-        this.navToggle = document.getElementById('nav-toggle');
-        this.navMenu = document.getElementById('nav-menu');
-        this.navLinks = document.querySelectorAll('.nav-link');
-        
-        this.init();
-    }
-
-    init() {
-        // Mobile menu toggle
-        this.navToggle.addEventListener('click', () => {
-            this.navMenu.classList.toggle('active');
-            this.navToggle.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        this.navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                this.navMenu.classList.remove('active');
-                this.navToggle.classList.remove('active');
-            });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                this.navbar.style.background = 'rgba(0, 0, 0, 0.98)';
-            } else {
-                this.navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        this.navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Active navigation highlighting
-        window.addEventListener('scroll', () => {
-            this.highlightActiveSection();
-        });
-    }
-
-    highlightActiveSection() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPos = window.scrollY + 100;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                this.navLinks.forEach(link => link.classList.remove('active'));
-                if (navLink) {
-                    navLink.classList.add('active');
-                }
-            }
-        });
-    }
-}
-
 // Scroll Reveal Animation
 class ScrollReveal {
     constructor() {
@@ -128,7 +269,6 @@ class ScrollReveal {
 
     init() {
         this.observeElements();
-        // Initial check for elements already in view
         this.checkElementsInView();
     }
 
@@ -184,10 +324,21 @@ class ProjectFilter {
             const category = card.getAttribute('data-category');
             
             if (filter === 'all' || category === filter) {
-                card.style.display = 'block';
-                card.style.animation = 'fadeIn 0.5s ease-in-out';
+                gsap.to(card, { 
+                    opacity: 1, 
+                    scale: 1, 
+                    duration: 0.3,
+                    display: 'block'
+                });
             } else {
-                card.style.display = 'none';
+                gsap.to(card, { 
+                    opacity: 0, 
+                    scale: 0.8, 
+                    duration: 0.3,
+                    onComplete: () => {
+                        card.style.display = 'none';
+                    }
+                });
             }
         });
     }
@@ -200,102 +351,6 @@ class ProjectFilter {
     }
 }
 
-// Particle Animation (Simple Canvas Implementation)
-class ParticleSystem {
-    constructor() {
-        this.canvas = this.createCanvas();
-        this.ctx = this.canvas.getContext('2d');
-        this.particles = [];
-        this.particleCount = 50;
-        this.init();
-    }
-
-    createCanvas() {
-        const canvas = document.createElement('canvas');
-        canvas.style.position = 'fixed';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        canvas.style.zIndex = '-1';
-        canvas.style.pointerEvents = 'none';
-        document.body.appendChild(canvas);
-        return canvas;
-    }
-
-    init() {
-        this.resize();
-        this.createParticles();
-        this.animate();
-
-        window.addEventListener('resize', () => this.resize());
-    }
-
-    resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-    }
-
-    createParticles() {
-        for (let i = 0; i < this.particleCount; i++) {
-            this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 2 + 1,
-                opacity: Math.random() * 0.5 + 0.2
-            });
-        }
-    }
-
-    animate() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.particles.forEach(particle => {
-            // Update position
-            particle.x += particle.vx;
-            particle.y += particle.vy;
-
-            // Wrap around edges
-            if (particle.x < 0) particle.x = this.canvas.width;
-            if (particle.x > this.canvas.width) particle.x = 0;
-            if (particle.y < 0) particle.y = this.canvas.height;
-            if (particle.y > this.canvas.height) particle.y = 0;
-
-            // Draw particle
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
-            this.ctx.fill();
-        });
-
-        // Draw connections
-        this.drawConnections();
-
-        requestAnimationFrame(() => this.animate());
-    }
-
-    drawConnections() {
-        for (let i = 0; i < this.particles.length; i++) {
-            for (let j = i + 1; j < this.particles.length; j++) {
-                const dx = this.particles[i].x - this.particles[j].x;
-                const dy = this.particles[i].y - this.particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 100) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-                    this.ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - distance / 100)})`;
-                    this.ctx.lineWidth = 1;
-                    this.ctx.stroke();
-                }
-            }
-        }
-    }
-}
-
 // Smooth Scrolling for all internal links
 class SmoothScroll {
     constructor() {
@@ -303,7 +358,6 @@ class SmoothScroll {
     }
 
     init() {
-        // Handle all anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -329,13 +383,8 @@ class PerformanceOptimizer {
     }
 
     init() {
-        // Lazy load images
         this.lazyLoadImages();
-        
-        // Debounce scroll events
         this.debounceScrollEvents();
-        
-        // Preload critical resources
         this.preloadCriticalResources();
     }
 
@@ -359,7 +408,6 @@ class PerformanceOptimizer {
         let ticking = false;
         
         const updateScrollElements = () => {
-            // Update scroll-dependent elements here
             ticking = false;
         };
 
@@ -372,7 +420,6 @@ class PerformanceOptimizer {
     }
 
     preloadCriticalResources() {
-        // Preload critical CSS and fonts
         const criticalResources = [
             'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
@@ -405,16 +452,13 @@ class ContactForm {
     }
 
     handleSubmit() {
-        // Get form data
         const formData = new FormData(this.form);
         const data = Object.fromEntries(formData);
 
-        // Simple validation
         if (!this.validateForm(data)) {
             return;
         }
 
-        // Simulate form submission
         this.showSuccessMessage();
         this.form.reset();
     }
@@ -429,7 +473,6 @@ class ContactForm {
             }
         }
 
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             this.showError('Please enter a valid email address.');
@@ -440,7 +483,6 @@ class ContactForm {
     }
 
     showError(message) {
-        // Create or update error message
         let errorDiv = document.querySelector('.form-error');
         if (!errorDiv) {
             errorDiv = document.createElement('div');
@@ -457,7 +499,6 @@ class ContactForm {
         }
         errorDiv.textContent = message;
         
-        // Remove error after 5 seconds
         setTimeout(() => {
             if (errorDiv.parentNode) {
                 errorDiv.parentNode.removeChild(errorDiv);
@@ -480,7 +521,6 @@ class ContactForm {
         
         this.form.insertBefore(successDiv, this.form.firstChild);
         
-        // Remove success message after 5 seconds
         setTimeout(() => {
             if (successDiv.parentNode) {
                 successDiv.parentNode.removeChild(successDiv);
@@ -489,7 +529,7 @@ class ContactForm {
     }
 }
 
-// Theme Manager (for future dark/light mode toggle)
+// Theme Manager
 class ThemeManager {
     constructor() {
         this.currentTheme = localStorage.getItem('theme') || 'dark';
@@ -498,9 +538,6 @@ class ThemeManager {
 
     init() {
         this.applyTheme(this.currentTheme);
-        
-        // Create theme toggle button (optional)
-        this.createThemeToggle();
     }
 
     applyTheme(theme) {
@@ -513,18 +550,9 @@ class ThemeManager {
         const newTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
         this.applyTheme(newTheme);
     }
-
-    createThemeToggle() {
-        // This can be implemented later if needed
-        // const toggle = document.createElement('button');
-        // toggle.innerHTML = '<i class="fas fa-moon"></i>';
-        // toggle.className = 'theme-toggle';
-        // toggle.addEventListener('click', () => this.toggleTheme());
-        // document.body.appendChild(toggle);
-    }
 }
 
-// Analytics and Tracking (Privacy-friendly)
+// Analytics and Tracking
 class Analytics {
     constructor() {
         this.events = [];
@@ -546,7 +574,6 @@ class Analytics {
     }
 
     trackUserInteractions() {
-        // Track button clicks
         document.querySelectorAll('.btn, .project-link, .social-link').forEach(element => {
             element.addEventListener('click', (e) => {
                 this.logEvent('button_click', {
@@ -556,7 +583,6 @@ class Analytics {
             });
         });
 
-        // Track section views
         const sections = document.querySelectorAll('section[id]');
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -574,8 +600,6 @@ class Analytics {
 
     logEvent(eventName, data) {
         this.events.push({ event: eventName, data });
-        
-        // In a real application, you would send this data to your analytics service
         console.log('Analytics Event:', eventName, data);
     }
 }
@@ -594,7 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize all components
-    new Navigation();
+    new GSAPNavigation();
     new ScrollReveal();
     new ProjectFilter();
     new SmoothScroll();
@@ -603,21 +627,14 @@ document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
     new Analytics();
 
-    // Initialize particle system only on larger screens for performance
-    if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        new ParticleSystem();
-    }
-
     // Add loading animation completion
     document.body.classList.add('loaded');
 });
 
 // Handle window resize
 window.addEventListener('resize', () => {
-    // Debounce resize events
     clearTimeout(window.resizeTimeout);
     window.resizeTimeout = setTimeout(() => {
-        // Handle responsive adjustments here
         console.log('Window resized');
     }, 250);
 });
@@ -625,15 +642,13 @@ window.addEventListener('resize', () => {
 // Handle page visibility changes
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        // Page is hidden - pause animations, etc.
         console.log('Page hidden');
     } else {
-        // Page is visible - resume animations, etc.
         console.log('Page visible');
     }
 });
 
-// Service Worker registration (for PWA capabilities)
+// Service Worker registration
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
@@ -649,11 +664,8 @@ if ('serviceWorker' in navigator) {
 // Error handling
 window.addEventListener('error', (e) => {
     console.error('Global error:', e.error);
-    // In production, you might want to send this to an error tracking service
 });
 
-// Unhandled promise rejection handling
 window.addEventListener('unhandledrejection', (e) => {
     console.error('Unhandled promise rejection:', e.reason);
-    // In production, you might want to send this to an error tracking service
 });
