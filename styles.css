@@ -1033,233 +1033,6 @@ body {
     border-color: rgba(59, 130, 246, 0.3);
 }
 
-/* Experience Section */
-.experience {
-    padding: 96px 0;
-    background: rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-
-.experience-content {
-    margin-top: 48px;
-}
-
-.experience-section {
-    margin-bottom: 80px;
-}
-
-.experience-section-title {
-    font-size: 28px;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.experience-section-title i {
-    color: #3b82f6;
-    font-size: 32px;
-}
-
-.timeline {
-    position: relative;
-    padding-left: 40px;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 20px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 40px;
-    padding: 32px;
-}
-
-.timeline-marker {
-    position: absolute;
-    left: -52px;
-    top: 40px;
-    width: 12px;
-    height: 12px;
-    background: #3b82f6;
-    border-radius: 50%;
-    border: 3px solid #0a0a0a;
-}
-
-.timeline-header {
-    margin-bottom: 16px;
-}
-
-.timeline-header h4 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 8px;
-}
-
-.company {
-    font-size: 18px;
-    color: #3b82f6;
-    font-weight: 500;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.period,
-.location {
-    font-size: 14px;
-    color: #b0b0b0;
-    margin-right: 16px;
-}
-
-.timeline-description {
-    color: #d0d0d0;
-    line-height: 1.7;
-    margin-bottom: 24px;
-}
-
-.achievements h5 {
-    color: #ffffff;
-    font-size: 16px;
-    margin-bottom: 12px;
-}
-
-.achievements ul {
-    list-style: none;
-    padding: 0;
-}
-
-.achievements li {
-    color: #d0d0d0;
-    margin-bottom: 8px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.achievements li::before {
-    content: '•';
-    color: #3b82f6;
-    position: absolute;
-    left: 0;
-    font-size: 16px;
-}
-
-.tech-stack {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-/* Education */
-.education-section {
-    margin-bottom: 80px;
-}
-
-.education-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 32px;
-}
-
-.education-card {
-    padding: 32px;
-    transition: all 0.3s ease;
-}
-
-.education-header h4 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 8px;
-}
-
-.institution {
-    font-size: 16px;
-    color: #8b5cf6;
-    font-weight: 500;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.gpa {
-    font-size: 14px;
-    color: #10b981;
-    font-weight: 500;
-}
-
-.education-achievements {
-    margin-top: 20px;
-}
-
-.education-achievements ul {
-    list-style: none;
-    padding: 0;
-}
-
-.education-achievements li {
-    color: #d0d0d0;
-    margin-bottom: 8px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.education-achievements li::before {
-    content: '•';
-    color: #8b5cf6;
-    position: absolute;
-    left: 0;
-    font-size: 16px;
-}
-
-/* Certifications */
-.certifications-section {
-    margin-bottom: 40px;
-}
-
-.certifications-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-}
-
-.certification-card {
-    padding: 24px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.certification-card:hover {
-    transform: translateY(-5px);
-}
-
-.certification-card i {
-    font-size: 40px;
-    color: #3b82f6;
-    margin-bottom: 16px;
-}
-
-.certification-card h4 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 8px;
-}
-
-.certification-card p {
-    font-size: 14px;
-    color: #b0b0b0;
-}
-
 /* Contact Section */
 .contact {
     padding: 96px 0;
@@ -1491,8 +1264,7 @@ body {
     .about,
     .skills,
     .projects,
-    .contact,
-    .experience {
+    .contact {
         padding: 64px 0;
     }
     
@@ -1511,18 +1283,6 @@ body {
     
     .contact-card {
         padding: 32px;
-    }
-
-    .timeline {
-        padding-left: 32px;
-    }
-
-    .timeline-marker {
-        left: -44px;
-    }
-
-    .education-grid {
-        grid-template-columns: 1fr;
     }
 
     .stats-grid {
@@ -1578,8 +1338,7 @@ body {
     .about,
     .skills,
     .projects,
-    .contact,
-    .experience {
+    .contact {
         padding: 48px 0;
     }
     
@@ -1597,22 +1356,6 @@ body {
     }
     
     .contact-card {
-        padding: 24px;
-    }
-
-    .timeline {
-        padding-left: 24px;
-    }
-
-    .timeline-marker {
-        left: -36px;
-    }
-
-    .timeline-item {
-        padding: 24px;
-    }
-
-    .education-card {
         padding: 24px;
     }
 
@@ -1636,6 +1379,11 @@ body {
     .close-button {
         top: 1.5rem;
         right: 1.5rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }
 
@@ -1708,26 +1456,9 @@ body {
         font-size: 40px;
     }
 
-    .timeline::before {
-        left: 12px;
-    }
-
-    .timeline {
-        padding-left: 16px;
-    }
-
-    .timeline-marker {
-        left: -28px;
-        width: 8px;
-        height: 8px;
-    }
-
-    .experience-section-title {
-        font-size: 24px;
-    }
-
-    .experience-section-title i {
-        font-size: 28px;
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }
 
@@ -1752,8 +1483,7 @@ body {
     .about,
     .skills,
     .projects,
-    .contact,
-    .experience {
+    .contact {
         padding: 40px 0;
     }
     
@@ -1765,16 +1495,9 @@ body {
         padding: 16px;
     }
 
-    .timeline-item {
-        padding: 16px;
-    }
-
-    .education-card {
-        padding: 16px;
-    }
-
-    .certification-card {
-        padding: 16px;
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }
 

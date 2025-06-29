@@ -149,7 +149,7 @@ const About = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                Dedicated Data Analyst with extensive experience in developing predictive analytics platforms, 
+                Dedicated Data Analyst with expertise in developing predictive analytics platforms, 
                 fraud detection systems, and financial risk models. Specialized in leveraging Python, machine learning, 
                 and big data technologies to drive data-driven decision making.
               </motion.p>

@@ -94,7 +94,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            🚀 Experienced in identifying and resolving complex data challenges, delivering{' '}
+            🚀 Specialized in identifying and resolving complex data challenges, delivering{' '}
             <strong className="text-white">actionable insights</strong>, and supporting data-driven 
             decision-making with expertise in machine learning, big data technologies, and financial analytics.
           </motion.p>
