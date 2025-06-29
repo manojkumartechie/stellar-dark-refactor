@@ -127,27 +127,6 @@ const EnhancedHero: React.FC = () => {
               Get In Touch
             </motion.button>
           </div>
-
-          {/* Stats */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-2">50+</div>
-              <div className="text-gray-400">Projects Completed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-2">15+</div>
-              <div className="text-gray-400">Technologies</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">99%</div>
-              <div className="text-gray-400">Client Satisfaction</div>
-            </div>
-          </motion.div>
         </div>
       </div>
 

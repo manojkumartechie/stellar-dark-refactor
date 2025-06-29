@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Rocket, Github, Linkedin, ExternalLink, BarChart3, TrendingUp, Database } from 'lucide-react';
+import { Download, Rocket, Github, Linkedin, ExternalLink } from 'lucide-react';
 import DataVisualization from '../components/DataVisualization';
 
 const Hero = () => {
@@ -56,12 +56,6 @@ const Hero = () => {
       label: 'Kaggle',
       color: 'hover:text-cyan-400'
     }
-  ];
-
-  const stats = [
-    { icon: BarChart3, value: '50+', label: 'Projects Completed', color: 'text-blue-400' },
-    { icon: TrendingUp, value: '95%', label: 'Model Accuracy', color: 'text-green-400' },
-    { icon: Database, value: '10TB+', label: 'Data Processed', color: 'text-purple-400' },
   ];
 
   const pageVariants = {
@@ -198,31 +192,6 @@ const Hero = () => {
             fraud detection, and predictive modeling with proven track record of delivering 
             high-impact data science projects.
           </motion.p>
-
-          {/* Stats Section */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto"
-            variants={itemVariants}
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                className="glass-morphism p-6 rounded-xl text-center"
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.2)"
-                }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 + index * 0.1 }}
-              >
-                <stat.icon className={`w-8 h-8 mx-auto mb-2 ${stat.color}`} />
-                <div className={`text-3xl font-bold ${stat.color} mb-1`}>{stat.value}</div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
 
           {/* Action Buttons */}
           <motion.div
