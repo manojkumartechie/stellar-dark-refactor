@@ -306,48 +306,244 @@ class ProjectFilter {
     constructor() {
         this.filterButtons = document.querySelectorAll('.filter-btn');
         this.projectCards = document.querySelectorAll('.project-card');
+        this.projectsGrid = document.querySelector('.projects-grid');
+        this.currentFilter = 'all';
+        this.isFiltering = false;
         this.init();
     }
 
     init() {
         this.filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
                 const filter = button.getAttribute('data-filter');
-                this.filterProjects(filter);
-                this.setActiveButton(button);
+                if (filter !== this.currentFilter && !this.isFiltering) {
+                    this.filterProjects(filter);
+                    this.setActiveButton(button);
+                }
+            });
+        });
+
+        // Add entrance animations on page load
+        this.animateCardsEntrance();
+    }
+
+    animateCardsEntrance() {
+        // Reset cards for entrance animation
+        gsap.set(this.projectCards, {
+            opacity: 0,
+            y: 20,
+            scale: 0.98,
+            rotationX: 3
+        });
+
+        // Staggered entrance animation
+        gsap.to(this.projectCards, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            rotationX: 0,
+            duration: 0.4,
+            stagger: 0.02,
+            ease: "power2.out",
+            delay: 0.05
+        });
+    }
+
+    async filterProjects(filter) {
+        if (this.isFiltering) return;
+        
+        this.isFiltering = true;
+        this.currentFilter = filter;
+        
+        // Add filtering overlay
+        this.projectsGrid.classList.add('filtering');
+        
+        // Get all cards and their categories
+        const cards = Array.from(this.projectCards);
+        const visibleCards = [];
+        const hiddenCards = [];
+        
+        cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+                visibleCards.push(card);
+            } else {
+                hiddenCards.push(card);
+            }
+        });
+
+        // Animate out hidden cards with stagger
+        if (hiddenCards.length > 0) {
+            await this.animateCardsOut(hiddenCards);
+        }
+
+        // Animate in visible cards with stagger
+        if (visibleCards.length > 0) {
+            await this.animateCardsIn(visibleCards);
+        }
+
+        // Remove filtering overlay
+        this.projectsGrid.classList.remove('filtering');
+        this.isFiltering = false;
+    }
+
+    animateCardsOut(cards) {
+        return new Promise((resolve) => {
+            gsap.to(cards, {
+                opacity: 0,
+                y: -15,
+                scale: 0.95,
+                rotationX: -3,
+                duration: 0.2,
+                stagger: 0.01,
+                ease: "power2.in",
+                onComplete: () => {
+                    cards.forEach(card => {
+                        card.style.display = 'none';
+                        card.classList.add('filtered-out');
+                    });
+                    resolve();
+                }
             });
         });
     }
 
-    filterProjects(filter) {
-        this.projectCards.forEach(card => {
-            const category = card.getAttribute('data-category');
-            
-            if (filter === 'all' || category === filter) {
-                gsap.to(card, { 
-                    opacity: 1, 
-                    scale: 1, 
-                    duration: 0.3,
-                    display: 'block'
-                });
-            } else {
-                gsap.to(card, { 
-                    opacity: 0, 
-                    scale: 0.8, 
-                    duration: 0.3,
-                    onComplete: () => {
-                        card.style.display = 'none';
-                    }
-                });
-            }
+    animateCardsIn(cards) {
+        return new Promise((resolve) => {
+            // Reset cards for entrance
+            gsap.set(cards, {
+                opacity: 0,
+                y: 15,
+                scale: 0.95,
+                rotationX: 3,
+                display: 'block'
+            });
+
+            // Animate in with stagger
+            gsap.to(cards, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                rotationX: 0,
+                duration: 0.25,
+                stagger: 0.02,
+                ease: "power2.out",
+                onComplete: () => {
+                    cards.forEach(card => {
+                        card.classList.remove('filtered-out');
+                        card.classList.add('filtered-in');
+                    });
+                    resolve();
+                }
+            });
         });
     }
 
     setActiveButton(activeButton) {
+        // Animate out all buttons
+        gsap.to(this.filterButtons, {
+            scale: 1,
+            duration: 0.1,
+            ease: "power2.out"
+        });
+
+        // Animate in active button
+        gsap.to(activeButton, {
+            scale: 1.01,
+            duration: 0.15,
+            ease: "back.out(1.2)"
+        });
+
+        // Update classes
         this.filterButtons.forEach(button => {
             button.classList.remove('active');
         });
         activeButton.classList.add('active');
+    }
+
+    // Enhanced hover effects for project cards
+    enhanceCardHoverEffects() {
+        this.projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    y: -8,
+                    rotationY: 2,
+                    rotationX: 2,
+                    scale: 1.005,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+
+                // Animate icon
+                const icon = card.querySelector('.project-icon');
+                if (icon) {
+                    gsap.to(icon, {
+                        scale: 1.03,
+                        rotation: 2,
+                        duration: 0.15,
+                        ease: "back.out(1.2)"
+                    });
+                }
+
+                // Animate title
+                const title = card.querySelector('.project-title');
+                if (title) {
+                    gsap.to(title, {
+                        x: 2,
+                        color: '#3b82f6',
+                        duration: 0.15,
+                        ease: "power2.out"
+                    });
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    y: 0,
+                    rotationY: 0,
+                    rotationX: 0,
+                    scale: 1,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+
+                // Reset icon
+                const icon = card.querySelector('.project-icon');
+                if (icon) {
+                    gsap.to(icon, {
+                        scale: 1,
+                        rotation: 0,
+                        duration: 0.15,
+                        ease: "power2.out"
+                    });
+                }
+
+                // Reset title
+                const title = card.querySelector('.project-title');
+                if (title) {
+                    gsap.to(title, {
+                        x: 0,
+                        color: '#ffffff',
+                        duration: 0.15,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        });
+    }
+
+    // Add loading state for cards
+    addLoadingState() {
+        this.projectCards.forEach(card => {
+            card.classList.add('loading');
+        });
+
+        setTimeout(() => {
+            this.projectCards.forEach(card => {
+                card.classList.remove('loading');
+            });
+        }, 800);
     }
 }
 
@@ -620,12 +816,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
     new GSAPNavigation();
     new ScrollReveal();
-    new ProjectFilter();
+    const projectFilter = new ProjectFilter();
     new SmoothScroll();
     new PerformanceOptimizer();
     new ContactForm();
     new ThemeManager();
     new Analytics();
+
+    // Enable enhanced hover effects after a short delay
+    setTimeout(() => {
+        projectFilter.enhanceCardHoverEffects();
+    }, 1000);
 
     // Add loading animation completion
     document.body.classList.add('loaded');
